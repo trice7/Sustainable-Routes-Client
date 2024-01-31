@@ -12,10 +12,7 @@ function Home() {
 
   useEffect(() => {
     if (user && user.id) {
-      getDestination(user.id).then((data) => {
-        console.warn('data', data);
-        setDestinationState(data);
-      });
+      getDestination(user.id).then(setDestination);
     }
   }, [user]);
 

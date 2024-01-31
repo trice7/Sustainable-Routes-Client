@@ -12,10 +12,7 @@ function Home() {
 
   useEffect(() => {
     if (user && user.id) {
-      getDestination(user.id).then((data) => {
-        console.warn('data', data);
-        setDestinationState(data);
-      });
+      getDestination(user.id).then(setDestinationState);
     }
   }, [user]);
 
@@ -40,7 +37,7 @@ function Home() {
         Sign Out
       </Button>
       <div className="card-container">
-        {destinationState && destinationState.filter((p) => p.uid === currentUserUid).map((p) => (
+        {destinationState && destinationState.filter((p) => p.uid === currentUserid).map((p) => (
           <DestinationCard key={p.firebaseKey} destination={p} onUpdate={handleUpdate} />
         ))}
       </div>

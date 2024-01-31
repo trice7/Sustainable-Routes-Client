@@ -2,27 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
-import DestinationCard from '../components/destinationCard';
-import getDestination from '../api/destinationData';
+import moduleName from 'module'
 
 function Home() {
-  const [destinationState, setDestinationState] = useState([]);
-  const { user } = useAuth();
-  const currentUserUid = user.id;
+  const [player, setPlayer] = useState([]);
+  const currentUserUid = id.auth().currentUser.uid;
 
   useEffect(() => {
-    if (user && user.id) {
-      getDestination(user.id).then((data) => {
-        console.warn('data', data);
-        setDestinationState(data);
-      });
-    }
-  }, [user]);
+    getPlayer().then(setPlayer);
+  }, []);
 
   const handleUpdate = () => {
-    getDestination().then(setDestinationState);
+    getPlayer().then(setPlayer);
   };
-
+  const { user } = useAuth();
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
@@ -40,11 +33,12 @@ function Home() {
         Sign Out
       </Button>
       <div className="card-container">
-        {destinationState && destinationState.filter((p) => p.uid === currentUserUid).map((p) => (
-          <DestinationCard key={p.firebaseKey} destination={p} onUpdate={handleUpdate} />
+        {player.filter((p) => p.uid === currentUserUid).map((p) => (
+          <parkCard key={p.firebaseKey} teamMemberObj={p} onUpdate={handleUpdate} />
         ))}
       </div>
     </div>
   );
 }
+
 export default Home;
