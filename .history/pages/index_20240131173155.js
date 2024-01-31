@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     if (user && user.id) {
       getDestination(user.id).then((data) => {
-        console.warn('data', data);
+        console.warn(data); // log the data to the console
         setDestinationState(data);
       });
     }

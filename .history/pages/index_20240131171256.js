@@ -5,19 +5,13 @@ import { useAuth } from '../utils/context/authContext';
 import DestinationCard from '../components/destinationCard';
 import getDestination from '../api/destinationData';
 
-function Home() {
-  const [destinationState, setDestinationState] = useState([]);
+function Home({ destination, setDestination }) {
   const { user } = useAuth();
   const currentUserUid = user.id;
 
   useEffect(() => {
-    if (user && user.id) {
-      getDestination(user.id).then((data) => {
-        console.warn('data', data);
-        setDestinationState(data);
-      });
-    }
-  }, [user]);
+    getDestination().then(setDestinationState);
+  }, []);
 
   const handleUpdate = () => {
     getDestination().then(setDestinationState);
