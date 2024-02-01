@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 import DestinationCard from '../components/destinationCard';
 import getDestination from '../api/destinationData';
 
 function Home() {
-  const [activity, setActivityState] = useState([]);
+  const [destinationState, setDestinationState] = useState([]);
   const { user } = useAuth();
   const currentUserUid = user.id;
 
@@ -12,13 +14,13 @@ function Home() {
     if (user && user.id) {
       getDestination(user.id).then((data) => {
         console.warn('data', data);
-        setActivityState(data);
+        setDestinationState(data);
       });
     }
   }, [user]);
 
   const handleUpdate = () => {
-    getDestination().then(setActivityState);
+    getDestination().then(setDestinationState);
   };
 
   return (
@@ -27,13 +29,18 @@ function Home() {
       style={{
         height: '90vh',
         padding: '30px',
-        maxWidth: '1200px',
+        maxWidth: '400px',
         margin: '0 auto',
       }}
     >
-      <h1>Hello {user.fbUser.displayName}, your next adventure awaits! </h1>
+      <h1>Hello {user.fbUser.displayName}, your next adventure awa </h1>
+      <p>Your Bio: {user.bio}</p>
+      <p>Click the button below to logout!</p>
+      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
+        Sign Out
+      </Button>
       <div className="card-container">
-        {activity && activity.filter((p) => p.uid === currentUserUid).map((p) => (
+        {destinationState && destinationState.filter((p) => p.uid === currentUserUid).map((p) => (
           <DestinationCard key={p.firebaseKey} destination={p} onUpdate={handleUpdate} />
         ))}
       </div>

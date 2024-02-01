@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 import DestinationCard from '../components/destinationCard';
 import getDestination from '../api/destinationData';
@@ -33,7 +35,7 @@ function Home() {
     >
       <h1>Hello {user.fbUser.displayName}, your next adventure awaits! </h1>
       <div className="card-container">
-        {activity && activity.filter((p) => p.uid === currentUserUid).map((p) => (
+        {destinationState && destinationState.filter((p) => p.uid === currentUserUid).map((p) => (
           <DestinationCard key={p.firebaseKey} destination={p} onUpdate={handleUpdate} />
         ))}
       </div>

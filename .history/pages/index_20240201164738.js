@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 import DestinationCard from '../components/destinationCard';
 import getDestination from '../api/destinationData';

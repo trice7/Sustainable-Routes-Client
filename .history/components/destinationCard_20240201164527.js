@@ -8,14 +8,14 @@ function destinationCard({ activities }) {
       {activities && <Card.Img variant="top" src={activities.image} alt={activities.name} />}
       <Card.Body>
         <Card.Title>{activities.name}</Card.Title>
-        <p className="card-text bold">Description: {activities && activities.description}</p>
+        <p className="card-text bold">Description: {destination && destination.description}</p>
       </Card.Body>
     </Card>
   );
 }
 
 destinationCard.propTypes = {
-  activities: PropTypes.shape({
+  destination: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
