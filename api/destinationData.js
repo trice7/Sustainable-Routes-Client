@@ -1,6 +1,5 @@
-import { clientCredentials } from '../utils/client';
+import { endpoint } from './activityData';
 
-// GET DESTINATION
 function getDestination(id) {
   const url = `http://localhost:8000/destination.json?id=${id}`;
   console.warn(`Fetching: ${url}`); // log the URL being fetched
@@ -19,4 +18,23 @@ function getDestination(id) {
       console.error('Error fetching destination:', error);
     });
 }
-export default getDestination;
+
+const getDestinations = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/destinations`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
+export { getDestination, getDestinations };
