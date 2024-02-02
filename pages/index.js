@@ -6,7 +6,7 @@ import getDestination from '../api/destinationData';
 function Home() {
   const [activity, setActivityState] = useState([]);
   const { user } = useAuth();
-  const currentUserUid = user.id;
+  // const currentUserUid = user.id;
 
   useEffect(() => {
     if (user && user.id) {
@@ -32,9 +32,19 @@ function Home() {
       }}
     >
       <h1>Hello {user.fbUser.displayName}, your next adventure awaits! </h1>
+    <div className="content">
+      <h1>Hello {user.fbUser.displayName}, your next adventure awaits!</h1>
+      <nav className="search">
+        <div className="container-fluid">
+          <form className="d-flex" role="search">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button className="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
       <div className="card-container">
-        {activity && activity.filter((p) => p.uid === currentUserUid).map((p) => (
-          <DestinationCard key={p.firebaseKey} destination={p} onUpdate={handleUpdate} />
+        {location && location.map((p) => (
+          <DestinationCard className="destination-card" key={p.id} location={p.location} onUpdate={handleUpdate} />
         ))}
       </div>
     </div>

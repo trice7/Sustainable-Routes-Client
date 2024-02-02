@@ -21,7 +21,6 @@ destinationCard.propTypes = {
     description: PropTypes.string,
     id: PropTypes.string,
   }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
-export default destinationCard;
+export default DestinationCard;
