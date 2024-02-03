@@ -9,13 +9,11 @@ function Home() {
   // const currentUserUid = user.id;
 
   useEffect(() => {
-    if (user && user.id) {
-      getDestination(user.id).then((data) => {
-        console.warn('data', data);
-        setLocation(data);
-      });
-    }
-  }, [user]);
+    getDestination().then((data) => {
+      setLocationState(data);
+    });
+  }, []);
+
 
   const handleUpdate = () => {
     getDestination().then(setLocation);
