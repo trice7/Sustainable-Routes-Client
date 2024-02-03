@@ -9,10 +9,12 @@ function Home() {
   // const currentUserUid = user.id;
 
   useEffect(() => {
-    getDestination().then((data) => {
-      setLocationState(data);
-    });
-  }, []);
+    if (user && user.id) {
+      getDestination(user.id).then((data) => {
+        setLocationState(data);
+      });
+    }
+  }, [user]);
 
   const handleUpdate = () => {
     getDestination().then(setLocationState);

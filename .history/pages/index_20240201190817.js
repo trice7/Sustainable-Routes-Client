@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import DestinationCard from '../components/destinationCard';
-import getDestination from '../api/destinationData';
+import 
 
 function Home() {
   const [location, setLocationState] = useState([]);

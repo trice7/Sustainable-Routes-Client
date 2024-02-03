@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import DestinationCard from '../components/destinationCard';
-import getDestination from '../api/destinationData';
+import { getDestination } from '../api/destinationData';
 
 function Home() {
   const [location, setLocationState] = useState([]);
   const { user } = useAuth();
-  // const currentUserUid = user.id;
 
   useEffect(() => {
     getDestination().then((data) => {
@@ -30,7 +29,7 @@ function Home() {
         </div>
       </nav>
       <div className="card-container">
-        {location && location.map((p) => (
+        {location && location.map((p) => ( => p.uid === currentUserUid).map((p) => (
           <DestinationCard className="destination-card" key={p.id} location={p.location} onUpdate={handleUpdate} />
         ))}
       </div>

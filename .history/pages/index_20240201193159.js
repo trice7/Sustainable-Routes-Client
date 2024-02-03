@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import DestinationCard from '../components/destinationCard';
-import getDestination from '../api/destinationData';
+import { getDestination } from '../api/destinationData';
 
 function Home() {
   const [location, setLocationState] = useState([]);
   const { user } = useAuth();
-  // const currentUserUid = user.id;
+
 
   useEffect(() => {
     getDestination().then((data) => {

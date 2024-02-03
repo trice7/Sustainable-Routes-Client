@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import DestinationCard from '../components/destinationCard';
-import getDestination from '../api/destinationData';
+import { getDestination } from '../api/destinationData';
 
 function Home() {
   const [location, setLocationState] = useState([]);
   const { user } = useAuth();
-  // const currentUserUid = user.id;
 
   useEffect(() => {
     getDestination().then((data) => {
@@ -17,7 +16,8 @@ function Home() {
   const handleUpdate = () => {
     getDestination().then(setLocationState);
   };
-
+  console.warn('', location);
+  // console.warn(user.uid);
   return (
     <div className="content">
       <h1>Hello {user.fbUser.displayName}, your next adventure awaits!</h1>
@@ -30,11 +30,12 @@ function Home() {
         </div>
       </nav>
       <div className="card-container">
-        {location && location.map((p) => (
-          <DestinationCard className="destination-card" key={p.id} location={p.location} onUpdate={handleUpdate} />
+        {location.filter((p) => p.uid === user.uid).map((p) => (
+          <DestinationCard key={p.firebaseKey} teamMemberObj={p} onUpdate={handleUpdate} />
         ))}
       </div>
     </div>
   );
 }
+
 export default Home;

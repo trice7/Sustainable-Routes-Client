@@ -6,13 +6,6 @@ import getDestination from '../api/destinationData';
 function Home() {
   const [location, setLocationState] = useState([]);
   const { user } = useAuth();
-  // const currentUserUid = user.id;
-
-  useEffect(() => {
-    getDestination().then((data) => {
-      setLocationState(data);
-    });
-  }, []);
 
   const handleUpdate = () => {
     getDestination().then(setLocationState);
