@@ -19,7 +19,8 @@ function Home() {
   };
 
   return (
-    <div>
+    <div
+    >
 
       <div className="content">
         <h1>Hello {user.fbUser.displayName}, your next adventure awaits!</h1>
