@@ -23,4 +23,4 @@ destinationCard.propTypes = {
   }).isRequired,
 };
 
-export default DestinationCard;
+export default destinationCard;
