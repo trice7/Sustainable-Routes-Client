@@ -6,7 +6,6 @@ import getDestination from '../api/destinationData';
 function Home() {
   const [location, setLocation] = useState([]);
   const { user } = useAuth();
-  // const currentUserUid = user.id;
 
   useEffect(() => {
     getDestination().then((data) => {
@@ -14,13 +13,22 @@ function Home() {
     });
   }, []);
 
+
   const handleUpdate = () => {
     getDestination().then(setLocation);
   };
 
   return (
-    <div>
-
+    <div
+      className="text-center d-flex flex-column justify-content-center align-content-center"
+      style={{
+        height: '90vh',
+        padding: '30px',
+        maxWidth: '1200px',
+        margin: '0 auto',
+      }}
+    >
+      <h1>Hello {user.fbUser.displayName}, your next adventure awaits! </h1>
       <div className="content">
         <h1>Hello {user.fbUser.displayName}, your next adventure awaits!</h1>
         <nav className="search">

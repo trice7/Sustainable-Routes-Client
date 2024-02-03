@@ -19,8 +19,16 @@ function Home() {
   };
 
   return (
-    <div>
-
+    <div
+      className="text-center d-flex flex-column justify-content-center align-content-center"
+      style={{
+        height: '90vh',
+        padding: '30px',
+        maxWidth: '1200px',
+        margin: '0 auto',
+      }}
+    >
+      <h1>Hello {user.fbUser.displayName}, your next adventure awaits! </h1>
       <div className="content">
         <h1>Hello {user.fbUser.displayName}, your next adventure awaits!</h1>
         <nav className="search">

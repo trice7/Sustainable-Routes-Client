@@ -15,8 +15,7 @@ function destinationCard({ location }) {
 }
 
 destinationCard.propTypes = {
-  location: PropTypes.shape({
-    image: PropTypes.string,
+  location    image: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
     id: PropTypes.string,
