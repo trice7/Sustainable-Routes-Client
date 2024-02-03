@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
-function DestinationCard({ location }) {
+function destinationCard({ activities }) {
   return (
     <Card>
-      {location && <Card.Img variant="top" src={location.image} alt={location.name} />}
+      {activities && <Card.Img variant="top" src={activities.image} alt={activities.name} />}
       <Card.Body>
-        <Card.Title>{location.name}</Card.Title>
-        <p className="card-text bold">Description: {location && location.description}</p>
+        <Card.Title>{activities.name}</Card.Title>
+        <p className="card-text bold">Description: {activities && activities.description}</p>
       </Card.Body>
     </Card>
   );
 }
 
-DestinationCard.propTypes = {
-  location: PropTypes.shape({
+destinationCard.propTypes = {
+  activities: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
@@ -23,4 +23,4 @@ DestinationCard.propTypes = {
   }).isRequired,
 };
 
-export default DestinationCard;
+export default destinationCard;
