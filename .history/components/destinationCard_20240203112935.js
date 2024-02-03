@@ -11,7 +11,7 @@ function destinationCard({ location }) {
       <Card.Body>
         <Card.Title>{location && location.name}</Card.Title>
         <p className="card-text bold">Description: {location && location.description}</p>
-        <Link href="/details" passHref>
+        <Link href="/activities/destinationDetails/activities" passHref>
           <Button variant="primary" className="m-2">VIEW</Button>
         </Link>
       </Card.Body>
