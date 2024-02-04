@@ -1,0 +1,55 @@
+@import 'bootstrap/dist/css/bootstrap.css';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+.custom-navbar {
+  background-color: #ffe8a3;
+}
+body {
+  background-color: #14ae5c;
+}
+
+.destination-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.destination-card .card {
+  flex: 0 0 calc(25% - 20px);
+  margin: 10px;
+}
+.search{
+  margin: 20px;
+}
+.search-button {
+  background-color: #ffe8a3;
+}
+.activities-header {
+  margin: 20px;
+  text-align: center;
+}
+.card-group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #dff0d8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; 
+}
