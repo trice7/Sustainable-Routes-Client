@@ -29,10 +29,7 @@ function ViewSingleDestination() {
         <h1>Hello {user.fbUser.displayName}, your next adventure awaits!</h1>
         <div className="card-container">
           {destination && (
-            <div>
-              <DestinationDetailsCard className="destination-card-details" key={destination.id} activity={destination} onUpdate={handleUpdate} />
-              <ActivityCard activity={destination} />
-            </div>
+          <DestinationDetailsCard className="destination-card-details" key={destination.id} activity={destination} onUpdate={handleUpdate} />
           )}
         </div>
       </div>

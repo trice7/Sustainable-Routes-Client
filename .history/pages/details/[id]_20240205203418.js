@@ -31,7 +31,7 @@ function ViewSingleDestination() {
           {destination && (
             <div>
               <DestinationDetailsCard className="destination-card-details" key={destination.id} activity={destination} onUpdate={handleUpdate} />
-              <ActivityCard activity={destination} />
+              <ActivityCard activity={destination} /> {/* Include ActivityCard */}
             </div>
           )}
         </div>

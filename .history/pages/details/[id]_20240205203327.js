@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
 import DestinationDetailsCard from '../../components/destinationDetailsCard';
-import ActivityCard from '../../components/activityCard';
+impr
 import { getSingleDestination } from '../../api/destinationData';
 
 function ViewSingleDestination() {
@@ -29,10 +29,7 @@ function ViewSingleDestination() {
         <h1>Hello {user.fbUser.displayName}, your next adventure awaits!</h1>
         <div className="card-container">
           {destination && (
-            <div>
-              <DestinationDetailsCard className="destination-card-details" key={destination.id} activity={destination} onUpdate={handleUpdate} />
-              <ActivityCard activity={destination} />
-            </div>
+          <DestinationDetailsCard className="destination-card-details" key={destination.id} activity={destination} onUpdate={handleUpdate} />
           )}
         </div>
       </div>
