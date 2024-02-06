@@ -12,12 +12,14 @@ function DestinationDetailsCard({ activity }) {
   //     deleteActivity(activity.id).then(() => onUpdate());
   //   }
   // };
+
+  console.warn(activity);
   return (
     <Card>
-      {activity && <Card.Img variant="top" src={activity.location.image} alt={activity.location.name} />}
+      {activity && <Card.Img variant="top" src={activity.image} alt={activity.name} />}
       <Card.Body>
-        <Card.Title>{activity && activity.location.name}</Card.Title>
-        <p className="card-text bold">Description: {activity && activity.location.description}</p>
+        <Card.Title>{activity && activity.name}</Card.Title>
+        <p className="card-text bold">Description: {activity && activity.description}</p>
         <h5 className="activities-header">Activities</h5>
         <CardGroup className="d-flex align-items-center activity-cards">
           {activity.description}
@@ -36,14 +38,14 @@ function DestinationDetailsCard({ activity }) {
 
 DestinationDetailsCard.propTypes = {
   activity: PropTypes.shape({
-    location: PropTypes.shape({
-      image: PropTypes.string,
-      name: PropTypes.string,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.number,
+    activities: PropTypes.shape({
+      favorite: PropTypes.bool,
       description: PropTypes.string,
     }),
-    id: PropTypes.number,
-    favorite: PropTypes.bool,
-    description: PropTypes.string,
   }).isRequired,
 };
 

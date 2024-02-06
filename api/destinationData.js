@@ -2,7 +2,7 @@ import { clientCredentials } from '../utils/client';
 
 // GET DESTINATION
 const getDestination = () => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/activities`, {
+  fetch(`${clientCredentials.databaseURL}/destinations`, {
     method: 'GET',
   })
     .then((response) => response.json())
@@ -15,7 +15,7 @@ const getDestination = () => new Promise((resolve, reject) => {
 
 // GET SINGLE DESTINATION
 const getSingleDestination = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/activities/${id}`, {
+  fetch(`${clientCredentials.databaseURL}/destinations/${id}`, {
     method: 'GET',
   })
     .then((response) => response.json())
