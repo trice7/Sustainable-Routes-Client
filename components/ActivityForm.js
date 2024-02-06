@@ -3,10 +3,9 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import { Button, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { createActivity, updateActivity } from '../api/activityData';
-import { getTags } from '../api/tagData';
 import { getDestinations } from '../api/destinationData';
 
 const initialState = {
@@ -22,14 +21,7 @@ function ActivityForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
-  const [tags, setTags] = useState();
   const [destinations, setDestinations] = useState();
-
-  useEffect(() => {
-    getTags().then(setTags);
-
-    if (obj.firebaseKey) setFormInput(obj);
-  }, [obj]);
 
   useEffect(() => {
     getDestinations().then(setDestinations);
@@ -60,6 +52,15 @@ function ActivityForm({ obj }) {
     }
   };
 
+  const handleChangeCheck = (e) => {
+    const { value } = e.target;
+    if (formInput.tags.includes(value)) {
+      formInput.tags -= value;
+    } else {
+      formInput.tags += value;
+    }
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Activity</h2>
@@ -86,35 +87,12 @@ function ActivityForm({ obj }) {
         />
       </FloatingLabel>
 
-      <FloatingLabel controlId="floatingSelect" label="Tags">
-        <Form.Select
-          aria-label="Tags"
-          name="tags"
-          onChange={handleChange}
-          className="mb-3"
-          // value={obj.tags}
-          required
-        >
-          <option value="">Select tags</option>
-          {
-            tags?.map((tag) => (
-              <option
-                key={tag.id}
-                value={tag.id}
-              >
-                {tag.label}
-              </option>
-            ))
-          }
-        </Form.Select>
-      </FloatingLabel>
       <FloatingLabel controlId="floatingSelect" label="Destination">
         <Form.Select
           aria-label="Destination"
           name="destination"
           onChange={handleChange}
           className="mb-3"
-          // value={obj.tags}
           required
         >
           <option value="">Destination</option>
@@ -131,6 +109,24 @@ function ActivityForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
+      <ToggleButtonGroup type="checkbox" className="mb-2">
+        <ToggleButton id="tbg-check-1" value="Eco-Friendly" onChange={handleChangeCheck}>
+          Eco-Friendly
+        </ToggleButton>
+        <ToggleButton id="tbg-check-2" value="Sustainable" onChange={handleChangeCheck}>
+          Sustainable
+        </ToggleButton>
+        <ToggleButton id="tbg-check-3" value="Renewable Energy" onChange={handleChangeCheck}>
+          Renewable Energy
+        </ToggleButton>
+        <ToggleButton id="tbg-check-4" value="Conservation" onChange={handleChangeCheck}>
+          Conservation
+        </ToggleButton>
+        <ToggleButton id="tbg-check-5" value="Green Living" onChange={handleChangeCheck}>
+          Green Living
+        </ToggleButton>
+      </ToggleButtonGroup>
+
       <Form.Check
         className="text-white mb-3"
         type="switch"
@@ -141,7 +137,7 @@ function ActivityForm({ obj }) {
         onChange={(e) => {
           setFormInput((prevState) => ({
             ...prevState,
-            sale: e.target.checked,
+            favorite: e.target.checked,
           }));
         }}
       />
