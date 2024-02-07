@@ -25,4 +25,18 @@ const deleteActivity = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { deleteActivity, getSingleActivity };
+//GET ACTIVITY
+const getActivity = () => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/activities`,{
+    mehtod: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+export {deleteActivity, getActivity}
+

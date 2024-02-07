@@ -24,6 +24,9 @@ ActivityCard.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
     id: PropTypes.number,
+    location: PropTypes.shape({
+      id: PropTypes.number,
+    }),
   }).isRequired,
 };
 export default ActivityCard;
