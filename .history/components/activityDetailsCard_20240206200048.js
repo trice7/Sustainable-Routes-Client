@@ -1,0 +1,32 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import Card from 'react-bootstrap/Card';
+import { Button } from 'react-bootstrap';
+
+function ActivityDetailsCard({ activity }) {
+  console.warn(activity);
+  const handleFavorite = () => {
+    set
+  }
+  return (
+    <Card>
+      <Card.Body>
+        <Card.Title>{activity && activity.name}</Card.Title>
+        <Button className="m-2">✏️</Button>
+        <Button className="m-2">🗑️</Button>
+        <Button className="m-2">⭐</Button>
+        <p className="card-text bold">Description: {activity && activity.description}</p>
+      </Card.Body>
+    </Card>
+  );
+}
+
+ActivityDetailsCard.propTypes = {
+  activity: PropTypes.shape({
+    image: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.number,
+  }).isRequired,
+};
+export default ActivityDetailsCard;
