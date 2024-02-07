@@ -13,7 +13,7 @@ function ActivityCard({ activity }) {
         <Card.Title>{activity && activity.name}</Card.Title>
         <p className="card-text bold">Description: {activity && activity.description}</p>
         {/* TODO: Add a button to view the activity details */}
-        <Link href={`/details/${activity.id}`} passHref>
+        <Link href={`/details/${activity.location?.id}`} passHref>
           <Button variant="primary" className="m-2">VIEW</Button>
         </Link>
       </Card.Body>
@@ -27,6 +27,9 @@ ActivityCard.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
     id: PropTypes.number,
+    location: PropTypes.shape({
+      id: PropTypes.number,
+    }),
   }).isRequired,
 };
 export default ActivityCard;
