@@ -27,8 +27,8 @@ const deleteActivity = (id) => new Promise((resolve, reject) => {
 
 // GET ACTIVITY
 const getActivity = () => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/activities`, {
-    method: 'GET',
+  fetch(`${clientCredentials.databaseURL}/activities`,{
+    mehtod: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
