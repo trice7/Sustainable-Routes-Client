@@ -7,6 +7,7 @@ import { Button, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { createActivity, updateActivity } from '../api/activityData';
 import { getDestinations } from '../api/destinationData';
+import { getTags } from '../api/tagData';
 
 const initialState = {
   name: '',
@@ -22,12 +23,20 @@ function ActivityForm({ obj }) {
   const router = useRouter();
   const { user } = useAuth();
   const [destinations, setDestinations] = useState();
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [availableTags, setAvailableTags] = useState([]);
 
   useEffect(() => {
     getDestinations().then(setDestinations);
 
     if (obj.firebaseKey) setFormInput(obj);
   }, [obj]);
+
+  useEffect(() => {
+    getTags().then(setAvailableTags);
+
+    if (obj.firebaseKey) setFormInput(obj);
+  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,12 +62,16 @@ function ActivityForm({ obj }) {
   };
 
   const handleChangeCheck = (e) => {
-    const { value } = e.target;
-    if (formInput.tags.includes(value)) {
-      formInput.tags -= value;
-    } else {
-      formInput.tags += value;
-    }
+    const { value } = e.target.value;
+    setSelectedTags((prevSelectedTags) => {
+      const newSelectedTags = new Set(prevSelectedTags);
+      if (newSelectedTags.has(value)) {
+        newSelectedTags.delete(value);
+      } else {
+        newSelectedTags.add(value);
+      }
+      return Array.from(newSelectedTags);
+    });
   };
 
   return (
@@ -110,22 +123,36 @@ function ActivityForm({ obj }) {
       </FloatingLabel>
 
       <ToggleButtonGroup type="checkbox" className="mb-2">
-        <ToggleButton id="tbg-check-1" value="Eco-Friendly" onChange={handleChangeCheck}>
+        <ToggleButton id="tbg-check-1" value="1" onChange={handleChangeCheck} checked={selectedTags.includes('1')}>
           Eco-Friendly
         </ToggleButton>
-        <ToggleButton id="tbg-check-2" value="Sustainable" onChange={handleChangeCheck}>
+        <ToggleButton id="tbg-check-2" value="2" onChange={handleChangeCheck} checked={selectedTags.includes('2')}>
           Sustainable
         </ToggleButton>
-        <ToggleButton id="tbg-check-3" value="Renewable Energy" onChange={handleChangeCheck}>
+        <ToggleButton id="tbg-check-3" value="3" onChange={handleChangeCheck} checked={selectedTags.includes('3')}>
           Renewable Energy
         </ToggleButton>
-        <ToggleButton id="tbg-check-4" value="Conservation" onChange={handleChangeCheck}>
+        <ToggleButton id="tbg-check-4" value="4" onChange={handleChangeCheck} checked={selectedTags.includes('4')}>
           Conservation
         </ToggleButton>
-        <ToggleButton id="tbg-check-5" value="Green Living" onChange={handleChangeCheck}>
+        <ToggleButton id="tbg-check-5" value="5" onChange={handleChangeCheck} checked={selectedTags.includes('5')}>
           Green Living
         </ToggleButton>
       </ToggleButtonGroup>
+
+      {/* {
+        availableTags.map((tag) => (
+          <label key={tag.id}>
+            <input
+              type="checkbox"
+              value={tag.id}
+              checked={selectedTags.includes(tag.id.toString())}
+              onChange={handleChangeCheck}
+            />
+            {tag.label}
+          </label>
+        ))
+      } */}
 
       <Form.Check
         className="text-white mb-3"
