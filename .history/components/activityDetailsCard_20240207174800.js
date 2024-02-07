@@ -18,7 +18,8 @@ function ActivityDetailsCard({ activity, setChange }) {
     });
     console.warn(payload);
   };
-
+  console.warn('Activity:', activity);
+  console.warn('Activity Tag Label:', activity && activity.tags.label);
   return (
     <Card>
       <Card.Body>
@@ -30,13 +31,11 @@ function ActivityDetailsCard({ activity, setChange }) {
         <Button className="m-2" onClick={handleFavorite}>⭐</Button>
         <p className="card-text bold">Description: {activity && activity.description}</p>
         <p className="card-text bold">
-          Tags:
-          {activity && activity.tags && activity.tags.map((tagObj) => (
-            <React.Fragment key={tagObj.id}>
-              <span>{tagObj.tag.label}</span>{' '}
-            </React.Fragment>
-          ))}
-        </p>
+  Tags:
+  {activity && activity.tags && activity.tags.map((tagObj) => (
+    <span key={tagObj.id}>{tagObj.label}</span>
+  ))}
+</p>
       </Card.Body>
     </Card>
   );
@@ -51,10 +50,12 @@ ActivityDetailsCard.propTypes = {
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        tag: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          label: PropTypes.string.isRequired,
-        }).isRequired,
+        label: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            tags: PropTypes.string.isRequired,
+          }),
+        ).isRequired,
       }),
     ).isRequired,
     user: PropTypes.shape({

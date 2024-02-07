@@ -18,7 +18,8 @@ function ActivityDetailsCard({ activity, setChange }) {
     });
     console.warn(payload);
   };
-
+  console.warn('Activity:', activity);
+  console.warn('Activity Tag:', activity && activity.tags);
   return (
     <Card>
       <Card.Body>
@@ -31,15 +32,23 @@ function ActivityDetailsCard({ activity, setChange }) {
         <p className="card-text bold">Description: {activity && activity.description}</p>
         <p className="card-text bold">
           Tags:
-          {activity && activity.tags && activity.tags.map((tagObj) => (
-            <React.Fragment key={tagObj.id}>
-              <span>{tagObj.tag.label}</span>{' '}
-            </React.Fragment>
-          ))}
+          {activity && activity.tags && activity.tags.tag.label.map((tags) => <span key={tags.id}>{tags.tags}</span>)}
         </p>
       </Card.Body>
     </Card>
-  );
+  );Unhandled Runtime Error
+  TypeError: Cannot read properties of undefined (reading 'label')
+  
+  Source
+  components\activityDetailsCard.js (35:58) @ ActivityDetailsCard
+  
+    33 |     <p className="card-text bold">
+    34 |       Tags:
+  > 35 |       {activity && activity.tags && activity.tags.tag.label.map((tags) => <span key={tags.id}>{tags.tags}</span>)}
+       |                                                      ^
+    36 |     </p>
+    37 |   </Card.Body>
+    38 | </Card>
 }
 
 ActivityDetailsCard.propTypes = {
@@ -51,10 +60,12 @@ ActivityDetailsCard.propTypes = {
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        tag: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          label: PropTypes.string.isRequired,
-        }).isRequired,
+        label: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            tags: PropTypes.string.isRequired,
+          }),
+        ).isRequired,
       }),
     ).isRequired,
     user: PropTypes.shape({

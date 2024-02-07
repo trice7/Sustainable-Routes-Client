@@ -19,6 +19,9 @@ function ActivityDetailsCard({ activity, setChange }) {
     console.warn(payload);
   };
 
+  console.warn('Activity:', activity);
+  console.warn('Activity Tag Label:', activity && activity.tags && activity.tags.map(tags => tag.label));
+
   return (
     <Card>
       <Card.Body>

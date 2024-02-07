@@ -18,6 +18,9 @@ function ActivityDetailsCard({ activity, setChange }) {
     });
     console.warn(payload);
   };
+  
+  console.warn('Activity:', activity);
+  console.warn('Activity Tag Label:', activity && activity.tags && activity.tags.map(tag => tag.label));
 
   return (
     <Card>
@@ -34,9 +37,9 @@ function ActivityDetailsCard({ activity, setChange }) {
           {activity && activity.tags && activity.tags.map((tagObj) => (
             <React.Fragment key={tagObj.id}>
               <span>{tagObj.tag.label}</span>{' '}
-            </React.Fragment>
-          ))}
-        </p>
+    </React.Fragment>
+  ))}
+</p>
       </Card.Body>
     </Card>
   );
