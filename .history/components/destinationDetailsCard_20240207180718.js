@@ -9,6 +9,12 @@ import ActivityCard from './activityCard';
 // import deleteActivity from '../api/activityData';
 
 function DestinationDetailsCard({ activity }) {
+  const deleteThisActivity = () => {
+    if (window.confirm(`Delete ${activity.description}?`)) {
+      deleteActivity(activity.id).then(() => onUpdate());
+    }
+  };
+
   return (
     <Card>
       {activity && <Card.Img variant="top" src={activity.image} alt={activity.name} />}
@@ -20,6 +26,9 @@ function DestinationDetailsCard({ activity }) {
           {activity.activities?.map((taco) => (
             <ActivityCard key={taco.id} activity={taco} />
           ))}
+          {/* <Button variant="danger" onClick={deleteThisActivity} className="m-2">
+            DELETE
+          </Button> */}
         </CardGroup>
         <div className="d-flex justify-content-center align-items-center">
           <Button className="add-activity">Add Activity</Button>

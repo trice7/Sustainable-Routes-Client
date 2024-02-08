@@ -1,21 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import Card from 'react-bootstrap/Card';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import { favoriteActivity, deleteActivity } from '../api/activityData';
+import { favoriteActivity } from '../api/activityData';
 
-function ActivityDetailsCard({ activity, setChange, onUpdate }) {
-  const router = useRouter();
-
+function ActivityDetailsCard({ activity, setChange }) {
   const deleteThisActivity = () => {
-    const shortDescription = activity.description.split(' ').slice(0, 4).join(' ');
-    if (window.confirm(`Delete ${shortDescription}?`)) {
-      deleteActivity(activity.id).then(() => {
-        onUpdate();
-        router.back();
-      });
+    if (window.confirm(`Delete ${activity.description}?`)) {
+      deleteActivity(activity.id).then(() => onUpdate());
     }
   };
   const handleFavorite = () => {
@@ -38,7 +31,9 @@ function ActivityDetailsCard({ activity, setChange, onUpdate }) {
         <Link href={`/activities/edit/${activity.id}`} passHref>
           <Button variant="primary" className="m-2">✏️</Button>
         </Link>
-        <Button variant="danger" onClick={deleteThisActivity} className="m-2">🗑️</Button>
+        <Button variant="danger" onClick={deleteThisActivity} className="m-2">
+        🗑️</Button>
+        <Button className="m-2">🗑️</Button>
         <Button className="m-2" onClick={handleFavorite}>⭐</Button>
         <p className="card-text bold">Description: {activity && activity.description}</p>
         <p className="card-text bold">
@@ -78,7 +73,6 @@ ActivityDetailsCard.propTypes = {
     favorite: PropTypes.bool.isRequired,
   }).isRequired,
   setChange: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired,
 };
 
 export default ActivityDetailsCard;

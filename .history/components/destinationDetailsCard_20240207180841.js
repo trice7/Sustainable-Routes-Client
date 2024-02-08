@@ -20,6 +20,7 @@ function DestinationDetailsCard({ activity }) {
           {activity.activities?.map((taco) => (
             <ActivityCard key={taco.id} activity={taco} />
           ))}
+          
         </CardGroup>
         <div className="d-flex justify-content-center align-items-center">
           <Button className="add-activity">Add Activity</Button>

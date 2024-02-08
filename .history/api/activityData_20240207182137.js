@@ -20,12 +20,7 @@ const deleteActivity = (id) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => {
-      if (response.ok && response.status !== 204) {
-        return response.json();
-      }
-      return null;
-    })
+    .then((response) => response.json())
     .then((data) => resolve(data))
     .catch(reject);
 });

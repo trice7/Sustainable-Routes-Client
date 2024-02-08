@@ -14,7 +14,7 @@ function ActivityDetailsCard({ activity, setChange, onUpdate }) {
     if (window.confirm(`Delete ${shortDescription}?`)) {
       deleteActivity(activity.id).then(() => {
         onUpdate();
-        router.back();
+        router.push('/details/${[id]}');
       });
     }
   };

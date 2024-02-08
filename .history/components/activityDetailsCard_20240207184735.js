@@ -8,13 +8,22 @@ import { favoriteActivity, deleteActivity } from '../api/activityData';
 
 function ActivityDetailsCard({ activity, setChange, onUpdate }) {
   const router = useRouter();
+  const isMounted = useRef(true);
+  
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const deleteThisActivity = () => {
     const shortDescription = activity.description.split(' ').slice(0, 4).join(' ');
     if (window.confirm(`Delete ${shortDescription}?`)) {
       deleteActivity(activity.id).then(() => {
-        onUpdate();
-        router.back();
+        if (isMounted.current) {
+          onUpdate();
+          router.back();
+        }
       });
     }
   };

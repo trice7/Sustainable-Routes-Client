@@ -13,8 +13,10 @@ function ActivityDetailsCard({ activity, setChange, onUpdate }) {
     const shortDescription = activity.description.split(' ').slice(0, 4).join(' ');
     if (window.confirm(`Delete ${shortDescription}?`)) {
       deleteActivity(activity.id).then(() => {
-        onUpdate();
-        router.back();
+        if (isMounted.current) {
+          onUpdate();
+          router.back();
+        }
       });
     }
   };

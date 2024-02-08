@@ -13,6 +13,7 @@ const getSingleActivity = (id) => new Promise((resolve, reject) => {
 });
 
 // DELETE ACTIVITY
+// DELETE ACTIVITY
 const deleteActivity = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/activities/${id}`, {
     method: 'DELETE',
@@ -27,6 +28,8 @@ const deleteActivity = (id) => new Promise((resolve, reject) => {
       return null;
     })
     .then((data) => resolve(data))
+    .catch(reject);
+});
     .catch(reject);
 });
 

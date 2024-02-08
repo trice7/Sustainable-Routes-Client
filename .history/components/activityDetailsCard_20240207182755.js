@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import Card from 'react-bootstrap/Card';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import { favoriteActivity, deleteActivity } from '../api/activityData';
 
 function ActivityDetailsCard({ activity, setChange, onUpdate }) {
-  const router = useRouter();
 
   const deleteThisActivity = () => {
-    const shortDescription = activity.description.split(' ').slice(0, 4).join(' ');
-    if (window.confirm(`Delete ${shortDescription}?`)) {
-      deleteActivity(activity.id).then(() => {
-        onUpdate();
-        router.back();
-      });
+    if (window.confirm(`Delete ${activity.description}?`)) {
+      deleteActivity(activity.id).then(() => onUpdate());
+    }
+  };
+  const ActivityDetailsCard = () => {
+    if (window.confirm(`Delete ${teamMemberObj.name}?`)) {
+      deletePlayer(teamMemberObj.firebaseKey).then(() => onUpdate());
     }
   };
   const handleFavorite = () => {

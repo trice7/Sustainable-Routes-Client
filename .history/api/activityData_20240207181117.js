@@ -24,7 +24,6 @@ const deleteActivity = (id) => new Promise((resolve, reject) => {
       if (response.ok && response.status !== 204) {
         return response.json();
       }
-      return null;
     })
     .then((data) => resolve(data))
     .catch(reject);

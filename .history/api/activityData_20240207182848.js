@@ -20,12 +20,7 @@ const deleteActivity = (id) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => {
-      if (response.ok && response.status !== 204) {
-        return response.json();
-      }
-      return null;
-    })
+    .then((response) => response.json())
     .then((data) => resolve(data))
     .catch(reject);
 });
@@ -82,5 +77,5 @@ const updateActivity = (payload) => new Promise((resolve, reject) => {
 });
 
 export {
-  deleteActivity, getActivity, getSingleActivity, favoriteActivity, createActivity, updateActivity,
+  deleteThisActivity, getActivity, getSingleActivity, favoriteActivity, createActivity, updateActivity,
 };
