@@ -11,11 +11,11 @@ function ActivityCard({ activity }) {
         <p className="card-text bold">Activity Name: {activity && activity.name}</p>
         <p className="card-text bold">Description: {activity && activity.description}</p>
         <Link href={`/activities/${activity.id}`} passHref>
-          <Button variant="primary" className="m-2">VIEW ACTIVITY INFO</Button>
+          <Button variant="primary" className="m-2">VIEW DESTINATION INFORMATION!</Button>
         </Link>
       </Card.Body>
     </Card>
-  );
+  );S
 }
 
 ActivityCard.propTypes = {
