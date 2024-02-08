@@ -25,7 +25,7 @@ function ViewSingleDestination() {
   return (
     <div>
       <div className="content">
-        <h1>Hello {user.fbUser.displayName}, your next adventure awaits at{Location.name}!</h1>
+        <h1>Hello {user.fbUser.displayName}, your next adventure awaits!</h1>
         <div className="card-container">
           {destination && (
             <div>

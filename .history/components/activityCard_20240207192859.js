@@ -15,7 +15,7 @@ function ActivityCard({ activity }) {
         </Link>
       </Card.Body>
     </Card>
-  );
+  );S
 }
 
 ActivityCard.propTypes = {
