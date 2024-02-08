@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import ActivityCard from './activityCard';
 
+
 function DestinationDetailsCard({ activity }) {
   return (
     <Card>
@@ -20,8 +21,8 @@ function DestinationDetailsCard({ activity }) {
           ))}
         </CardGroup>
         <div className="d-flex justify-content-center align-items-center">
-          <Link href="/activities/new" passHref>
-            <Button className="add-activity">Add Activity</Button>
+          <Link href="/activities/new">
+          <Button className="add-activity">Add Activity</Button>
           </Link>
         </div>
       </Card.Body>
