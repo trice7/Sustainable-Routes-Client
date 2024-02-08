@@ -27,8 +27,12 @@ function ActivityForm({ obj }) {
 
   useEffect(() => {
     getDestination().then(setLocations);
-    if (obj.uid) setFormInput(obj);
+    if (obj.uid) {
+      setFormInput(obj); // Set formInput state to the obj prop if it exists
+      setSelectedTags(obj.tags); // Set selectedTags state to the tags from obj prop
+    }
   }, [obj]);
+
   useEffect(() => {
     getTags().then(setAvailableTags);
     if (obj.uid) setFormInput(obj);
