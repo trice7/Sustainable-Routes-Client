@@ -8,8 +8,8 @@ function ActivityCard({ activity }) {
   return (
     <Card>
       <Card.Body>
-        <p className="card-text bold">Activity Name: {activity && activity.name}</p>
         <p className="card-text bold">Description: {activity && activity.description}</p>
+        {/* TODO: Add a button to view the activity details */}
         <Link href={`/activities/${activity.id}`} passHref>
           <Button variant="primary" className="m-2">VIEW DESTINATION INFORMATION</Button>
         </Link>
