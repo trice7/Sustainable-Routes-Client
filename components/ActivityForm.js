@@ -10,7 +10,6 @@ import { getDestination } from '../api/destinationData';
 import { getTags } from '../api/tagData';
 
 const initialState = {
-  name: '',
   location: '',
   description: '',
   favorite: false,
@@ -28,8 +27,8 @@ function ActivityForm({ obj }) {
   useEffect(() => {
     getDestination().then(setLocations);
     if (obj.uid) {
-      setFormInput(obj); // Set formInput state to the obj prop if it exists
-      setSelectedTags(obj.tags); // Set selectedTags state to the tags from obj prop
+      setFormInput(obj);
+      setSelectedTags(obj.tags);
     }
   }, [obj]);
 
@@ -54,12 +53,10 @@ function ActivityForm({ obj }) {
     };
     if (obj.uid) {
       updateActivity({ ...payload, uid: obj.uid }).then(() => {
-        // After successful update, redirect to the activity's page or as needed
         router.push(`/activities/${obj.id}`);
       });
     } else {
       createActivity(payload).then(() => {
-        // Handle the response, such as redirecting to a new page or showing a success message
         router.push('/');
       });
     }
@@ -75,7 +72,7 @@ function ActivityForm({ obj }) {
         newSelectedTags.add(value);
       }
       const updatedTags = Array.from(newSelectedTags);
-      console.log('Updated selectedTags:', updatedTags); // Log the updated state
+      console.log('Updated selectedTags:', updatedTags);
       return updatedTags;
     });
   };
@@ -83,16 +80,6 @@ function ActivityForm({ obj }) {
   return (
     <Form onSubmit={handleSubmit}>
       <h2 className="text-white mt-5">{obj.uid ? 'Update' : 'Create'} Activity</h2>
-      <FloatingLabel controlId="floatingInput1" label="Activity" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter an activity name"
-          name="name"
-          value={formInput.name}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
       <FloatingLabel controlId="floatingInput3" label="Activity Description" className="mb-3">
         <Form.Control
           type="text"
