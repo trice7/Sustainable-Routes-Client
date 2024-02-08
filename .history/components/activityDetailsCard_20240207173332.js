@@ -30,18 +30,13 @@ function ActivityDetailsCard({ activity, setChange }) {
         <Button className="m-2" onClick={handleFavorite}>⭐</Button>
         <p className="card-text bold">Description: {activity && activity.description}</p>
         <p className="card-text bold">
-          Tags:
-          {activity && activity.tags && activity.tags.map((tagObj) => (
-            <React.Fragment key={tagObj.id}>
-              <span>{tagObj.tag.label}</span>{' '}
-            </React.Fragment>
-          ))}
+          Description:
+          {activity && activity.tag && activity.tag.map((tag) => <span key={tag.id}>{tag}</span>)}
         </p>
       </Card.Body>
     </Card>
   );
 }
-
 ActivityDetailsCard.propTypes = {
   activity: PropTypes.shape({
     image: PropTypes.string,
@@ -51,19 +46,12 @@ ActivityDetailsCard.propTypes = {
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        tag: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          label: PropTypes.string.isRequired,
-        }).isRequired,
-      }),
+        tag: PropTypes.string.isRequired,
+      })
     ).isRequired,
     user: PropTypes.shape({
       uid: PropTypes.string.isRequired,
     }).isRequired,
-    location: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-    }).isRequired,
-    favorite: PropTypes.bool.isRequired,
   }).isRequired,
   setChange: PropTypes.func.isRequired,
 };

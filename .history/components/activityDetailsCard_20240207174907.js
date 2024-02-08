@@ -18,7 +18,8 @@ function ActivityDetailsCard({ activity, setChange }) {
     });
     console.warn(payload);
   };
-
+  console.warn('Activity:', activity);
+  console.warn('Activity Tag Label:', activity && activity.tags.label);
   return (
     <Card>
       <Card.Body>
@@ -32,9 +33,7 @@ function ActivityDetailsCard({ activity, setChange }) {
         <p className="card-text bold">
           Tags:
           {activity && activity.tags && activity.tags.map((tagObj) => (
-            <React.Fragment key={tagObj.id}>
-              <span>{tagObj.tag.label}</span>{' '}
-            </React.Fragment>
+            <span key={tagObj.id}>{tagObj.label}</span>
           ))}
         </p>
       </Card.Body>
@@ -42,30 +41,14 @@ function ActivityDetailsCard({ activity, setChange }) {
   );
 }
 
-ActivityDetailsCard.propTypes = {
-  activity: PropTypes.shape({
-    image: PropTypes.string,
-    name: PropTypes.string,
-    description: PropTypes.string,
-    id: PropTypes.number,
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        tag: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          label: PropTypes.string.isRequired,
-        }).isRequired,
-      }),
-    ).isRequired,
-    user: PropTypes.shape({
-      uid: PropTypes.string.isRequired,
-    }).isRequired,
-    location: PropTypes.shape({
+tags: PropTypes.arrayOf(
+  PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    tag: PropTypes.shape({
       id: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
     }).isRequired,
-    favorite: PropTypes.bool.isRequired,
-  }).isRequired,
-  setChange: PropTypes.func.isRequired,
-};
+  }),
+).isRequired,
 
 export default ActivityDetailsCard;

@@ -41,7 +41,7 @@ function ActivityDetailsCard({ activity, setChange }) {
     </Card>
   );
 }
-
+s
 ActivityDetailsCard.propTypes = {
   activity: PropTypes.shape({
     image: PropTypes.string,

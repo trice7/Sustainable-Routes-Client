@@ -31,39 +31,27 @@ function ActivityDetailsCard({ activity, setChange }) {
         <p className="card-text bold">Description: {activity && activity.description}</p>
         <p className="card-text bold">
           Tags:
-          {activity && activity.tags && activity.tags.map((tagObj) => (
-            <React.Fragment key={tagObj.id}>
-              <span>{tagObj.tag.label}</span>{' '}
-            </React.Fragment>
-          ))}
+          {activity.tag.map((tag) => <span key={tag.id}>{tag}</span>)}
         </p>
       </Card.Body>
     </Card>
   );
 }
-
 ActivityDetailsCard.propTypes = {
   activity: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
     id: PropTypes.number,
-    tags: PropTypes.arrayOf(
+    tag: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        tag: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          label: PropTypes.string.isRequired,
-        }).isRequired,
+        tag: PropTypes.string.isRequired,
       }),
     ).isRequired,
     user: PropTypes.shape({
       uid: PropTypes.string.isRequired,
     }).isRequired,
-    location: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-    }).isRequired,
-    favorite: PropTypes.bool.isRequired,
   }).isRequired,
   setChange: PropTypes.func.isRequired,
 };

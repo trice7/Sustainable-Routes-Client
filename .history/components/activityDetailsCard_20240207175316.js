@@ -18,6 +18,9 @@ function ActivityDetailsCard({ activity, setChange }) {
     });
     console.warn(payload);
   };
+  
+  console.warn('Activity:', activity);
+  console.warn('Activity Tag Label:', activity && activity.tags && activity.tags.map(tag => tag.label));
 
   return (
     <Card>
@@ -30,13 +33,13 @@ function ActivityDetailsCard({ activity, setChange }) {
         <Button className="m-2" onClick={handleFavorite}>⭐</Button>
         <p className="card-text bold">Description: {activity && activity.description}</p>
         <p className="card-text bold">
-          Tags:
-          {activity && activity.tags && activity.tags.map((tagObj) => (
-            <React.Fragment key={tagObj.id}>
-              <span>{tagObj.tag.label}</span>{' '}
-            </React.Fragment>
-          ))}
-        </p>
+      Tags:
+  {activity && activity.tags && activity.tags.map((tagObj) => (
+    <React.Fragment key={tagObj.id}>
+      <span>{tagObj.tag.label}</span>{" "}
+    </React.Fragment>
+  ))}
+</p>
       </Card.Body>
     </Card>
   );
