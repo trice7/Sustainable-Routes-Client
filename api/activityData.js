@@ -49,6 +49,32 @@ const favoriteActivity = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const createActivity = (payload) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/activities`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const updateActivity = (payload) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/activities/${payload.firebaseKey}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
-  deleteActivity, getActivity, getSingleActivity, favoriteActivity,
+  deleteActivity, getActivity, getSingleActivity, favoriteActivity, createActivity, updateActivity,
 };
