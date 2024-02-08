@@ -72,7 +72,6 @@ function ActivityForm({ obj }) {
         newSelectedTags.add(value);
       }
       const updatedTags = Array.from(newSelectedTags);
-      console.log('Updated selectedTags:', updatedTags);
       return updatedTags;
     });
   };
