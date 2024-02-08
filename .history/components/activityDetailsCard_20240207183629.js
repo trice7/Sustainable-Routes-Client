@@ -7,15 +7,10 @@ import Link from 'next/link';
 import { favoriteActivity, deleteActivity } from '../api/activityData';
 
 function ActivityDetailsCard({ activity, setChange, onUpdate }) {
-  const router = useRouter();
-
   const deleteThisActivity = () => {
     const shortDescription = activity.description.split(' ').slice(0, 4).join(' ');
     if (window.confirm(`Delete ${shortDescription}?`)) {
-      deleteActivity(activity.id).then(() => {
-        onUpdate();
-        router.back();
-      });
+      deleteActivity(activity.id).then(() => onUpdate());
     }
   };
   const handleFavorite = () => {

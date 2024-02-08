@@ -11,7 +11,7 @@ const getSingleActivity = (id) => new Promise((resolve, reject) => {
     })
     .catch(reject);
 });
-
+// DELETE ACTIVITY
 // DELETE ACTIVITY
 const deleteActivity = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/activities/${id}`, {
@@ -23,8 +23,8 @@ const deleteActivity = (id) => new Promise((resolve, reject) => {
     .then((response) => {
       if (response.ok && response.status !== 204) {
         return response.json();
+      } else { null;
       }
-      return null;
     })
     .then((data) => resolve(data))
     .catch(reject);

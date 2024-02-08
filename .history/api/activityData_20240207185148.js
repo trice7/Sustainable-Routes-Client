@@ -5,7 +5,12 @@ const getSingleActivity = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/activities/${id}`, {
     method: 'GET',
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Activity not found');
+      }
+      return response.json();
+    })
     .then((data) => {
       resolve(data);
     })

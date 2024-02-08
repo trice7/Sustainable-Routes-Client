@@ -13,19 +13,14 @@ const getSingleActivity = (id) => new Promise((resolve, reject) => {
 });
 
 // DELETE ACTIVITY
-const deleteActivity = (id) => new Promise((resolve, reject) => {
+const deleteThisActivity = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/activities/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => {
-      if (response.ok && response.status !== 204) {
-        return response.json();
-      }
-      return null;
-    })
+    .then((response) => response.json())
     .then((data) => resolve(data))
     .catch(reject);
 });
