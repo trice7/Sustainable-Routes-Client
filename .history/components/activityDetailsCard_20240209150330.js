@@ -18,7 +18,6 @@ function ActivityDetailsCard({ activity, setChange, onUpdate }) {
       });
     }
   };
-
   const handleFavorite = () => {
     const payload = {};
     payload.id = activity.id;
@@ -42,7 +41,8 @@ function ActivityDetailsCard({ activity, setChange, onUpdate }) {
         <Button className="m-2" onClick={handleFavorite}>⭐</Button>
         <p className="card-text bold">Description: {activity && activity.description}</p>
         <p className="card-text bold">
-          Tags: {activity && activity.tags && activity.tags.map((tagObj) => tagObj.tag.label).join(', ')}
+          Tags:
+          {activity && activity.tags && activity.tags.map((tagObj) => tagObj.tag.label).join(', ')}
         </p>
       </Card.Body>
     </Card>
