@@ -9,10 +9,10 @@ function ActivityCard({ activity }) {
     <Card>
       <Card.Body>
         <p className="card-text bold">Description: {activity && activity.description}</p>
-        <p className="card-text bold">
-          Tags: {activity && activity.tags && activity.tags.map((tagObj) => tagObj.tag.label).join(', ')}
-        </p>
         <Link href={`/activities/${activity.id}`} passHref>
+          <p className="card-text bold">
+            Tags: {activity && activity.tags && activity.tags.map((tagObj) => tagObj.tag.label).join(', ')}
+          </p>
           <Button variant="primary" className="m-2">VIEW ACTIVITY INFO</Button>
         </Link>
       </Card.Body>
@@ -24,8 +24,8 @@ ActivityCard.propTypes = {
   activity: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    description: PropTypes.string,
+    id: PropTypes.number,
     location: PropTypes.shape({
       id: PropTypes.number,
     }),

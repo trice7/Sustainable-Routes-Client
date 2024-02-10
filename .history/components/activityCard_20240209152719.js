@@ -22,20 +22,26 @@ function ActivityCard({ activity }) {
 
 ActivityCard.propTypes = {
   activity: PropTypes.shape({
-    image: PropTypes.string,
-    name: PropTypes.string,
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     location: PropTypes.shape({
-      id: PropTypes.number,
-    }),
+      id: PropTypes.number.isRequired,
+    }).isRequired,
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         tag: PropTypes.shape({
-          label: PropTypes.string,
-        }),
+          label: PropTypes.string.isRequired,
+        }).isRequired,
       }),
-    ),
+    ).isRequired,
+    favorite: PropTypes.bool.isRequired,
+    user: PropTypes.shape({
+      uid: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  setChange: PropTypes.func.isRequired,
 };
 export default ActivityCard;

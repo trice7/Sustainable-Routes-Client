@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
+
 function ActivityCard({ activity }) {
   return (
     <Card>
@@ -24,8 +25,8 @@ ActivityCard.propTypes = {
   activity: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    description: PropTypes.string,
+    id: PropTypes.number,
     location: PropTypes.shape({
       id: PropTypes.number,
     }),
@@ -36,6 +37,12 @@ ActivityCard.propTypes = {
         }),
       }),
     ),
+    favorite: PropTypes.bool,
+    user: PropTypes.shape({
+      uid: PropTypes.string,
+    }),
   }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  setChange: PropTypes.func.isRequired,
 };
 export default ActivityCard;

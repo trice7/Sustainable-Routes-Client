@@ -24,18 +24,11 @@ ActivityCard.propTypes = {
   activity: PropTypes.shape({
     image: PropTypes.string,
     name: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    description: PropTypes.string,
+    id: PropTypes.number,
     location: PropTypes.shape({
       id: PropTypes.number,
     }),
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-        tag: PropTypes.shape({
-          label: PropTypes.string,
-        }),
-      }),
-    ),
   }).isRequired,
 };
 export default ActivityCard;

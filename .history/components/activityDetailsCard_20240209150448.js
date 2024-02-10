@@ -18,7 +18,6 @@ function ActivityDetailsCard({ activity, setChange, onUpdate }) {
       });
     }
   };
-
   const handleFavorite = () => {
     const payload = {};
     payload.id = activity.id;
