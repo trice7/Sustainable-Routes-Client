@@ -4,7 +4,7 @@ import { useAuth } from '../../utils/context/authContext';
 import DestinationDetailsCard from '../../components/destinationDetailsCard';
 import { getSingleDestination } from '../../api/destinationData';
 
-function ViewSingleDestination() {
+function ViewSingleDestination(activity) {
   const router = useRouter();
   const { id } = router.query;
   const [destination, setDestination] = useState(null);
@@ -24,7 +24,7 @@ function ViewSingleDestination() {
   return (
     <div>
       <div className="content">
-        <h1>Hello {user.fbUser.displayName}, your next adventure awaits at {destination && destination.name}!</h1>
+        <h1>Hello {user.fbUser.displayName}, your next adventure awaits at {destination.name}!</h1>
         <div className="card-container">
           {destination && (
             <div>
